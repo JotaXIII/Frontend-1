@@ -1,0 +1,92 @@
+/* PFY2201 - Semana 2: estilos externos de Pixel Store */
+
+:root {
+    --acento-semana2: #22d3ee;
+    --acento-hover: #67e8f9;
+    --borde-semana2: rgba(103, 232, 249, .45);
+}
+
+/* Modelo de cajas aplicado a todo el proyecto. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Selectores de etiqueta y descendientes. */
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+nav ul {
+    align-items: center;
+}
+
+nav li {
+    margin: 0;
+}
+
+/* Selectores de clase para reutilizar el diseño de los enlaces. */
+.spa-view a,
+footer a {
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+/* Selector de ID y pseudo-clase para destacar productos alternados. */
+#productos li:nth-child(even) {
+    border-color: rgba(59, 130, 246, .38);
+}
+
+#productos li:nth-child(even):hover,
+#productos li:nth-child(odd):hover {
+    border-color: var(--borde-semana2);
+}
+
+#productos img {
+    border: 1px solid rgba(255, 255, 255, .12);
+}
+
+/* Mejora de interacción y accesibilidad en controles de navegación. */
+nav a:hover,
+nav a:focus-visible,
+footer a:hover,
+footer a:focus-visible {
+    color: var(--acento-hover);
+}
+
+nav a[aria-current="page"] {
+    color: var(--acento-semana2);
+}
+
+/* Responsividad para teléfonos: navegación cómoda y tarjetas legibles. */
+@media (max-width: 600px) {
+    nav ul {
+        justify-content: space-between;
+        gap: .5rem;
+    }
+
+    nav a {
+        display: inline-block;
+        padding: .35rem .5rem;
+        font-size: .9rem;
+    }
+
+    #productos > ul {
+        margin-inline: -.25rem;
+    }
+
+    #productos li {
+        flex-basis: min(300px, 82vw);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}

@@ -1,4 +1,8 @@
-# Entrega Semana 1 - PFY2201
+# Proyecto acumulativo - PFY2201
+
+Este proyecto reúne el trabajo de las semanas 1 y 2. La evidencia disponible actualmente corresponde a la Semana 1; la evidencia de la Semana 2 debe agregarse cuando se realicen sus capturas o validaciones.
+
+## Semana 1
 
 ## Archivos del proyecto
 
@@ -7,9 +11,9 @@
 
 ## Evidencia incluida
 
-- `Juan_Osega_PFY2201_Evidencias_Semana1.pdf`
+- `Juan_Osega_PFY2201_Evidencias_Semana2.pdf`
 
-El PDF incluye:
+El PDF incluye una explicación breve de los cambios de la Semana 2 y las capturas del proyecto:
 
 1. Captura de la vista Inicio.
 2. Captura de la vista Productos.
