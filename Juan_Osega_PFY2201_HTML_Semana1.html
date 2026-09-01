@@ -1,238 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Configuración básica de la página. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pixel Store, tienda digital de videojuegos.">
     <title>Pixel Store | Tienda de videojuegos</title>
-    <link rel="stylesheet" href="Juan_Osega_PFY2201_CSS_Semana2.css">
-    <style>
-        :root {
-            --fondo: #080a12;
-            --superficie: #111c2e;
-            --texto: #f8fafc;
-            --secundario: #b7c5d9;
-            --azul: #3b82f6;
-            --azul-profundo: #1d4ed8;
-            --cyan: #38bdf8;
-            --plata: #dbe7f3;
-        }
-
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        [hidden] { display: none !important; }
-
-        body {
-            margin: 0;
-            color: var(--texto);
-            background:
-                radial-gradient(circle at 12% 5%, rgba(37, 99, 235, .30), transparent 32rem),
-                radial-gradient(circle at 90% 35%, rgba(56, 189, 248, .16), transparent 28rem),
-                linear-gradient(135deg, rgba(148, 163, 184, .06), transparent 45%),
-                var(--fondo);
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-        }
-
-        header {
-            min-height: 68vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 7rem max(6vw, 1.5rem) 4rem;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-            position: relative;
-            overflow: hidden;
-            isolation: isolate;
-        }
-
-        header::after {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            width: min(46vw, 550px);
-            aspect-ratio: 1;
-            right: -8%;
-            top: 8%;
-            border-radius: 50%;
-            background:
-                radial-gradient(circle at 40% 38%, rgba(255, 255, 255, .75), transparent 2%),
-                radial-gradient(circle, rgba(56, 189, 248, .32), rgba(37, 99, 235, .10) 45%, transparent 70%);
-            filter: blur(2px);
-            box-shadow: 0 0 90px rgba(56, 189, 248, .22);
-        }
-
-        header::before {
-            content: "TIENDA DIGITAL DE VIDEOJUEGOS";
-            color: var(--plata);
-            font-size: .75rem;
-            font-weight: 700;
-            letter-spacing: .16em;
-        }
-
-        h1 {
-            max-width: 850px;
-            margin: .5rem 0;
-            font-size: clamp(3.2rem, 10vw, 7rem);
-            line-height: .95;
-            letter-spacing: -.07em;
-            color: transparent;
-            background: linear-gradient(105deg, #ffffff 10%, #a8c4df 38%, #38bdf8 65%, #60a5fa 88%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            text-shadow: 0 0 38px rgba(56, 189, 248, .18);
-        }
-
-        header p {
-            max-width: 600px;
-            margin: 1rem 0 0;
-            color: var(--secundario);
-            font-size: clamp(1rem, 2vw, 1.25rem);
-        }
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            padding: .8rem max(6vw, 1.5rem);
-            background: rgba(8, 10, 18, .88);
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-            backdrop-filter: blur(14px);
-            box-shadow: 0 8px 30px rgba(2, 8, 23, .35);
-        }
-
-        nav ul {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: clamp(1rem, 5vw, 3rem);
-            list-style: none;
-        }
-
-        nav a, footer a {
-            color: var(--texto);
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        nav a:hover, nav a:focus, footer a:hover { color: var(--cyan); }
-        nav a[aria-current="page"] {
-            color: var(--cyan);
-            border-bottom: 2px solid var(--cyan);
-            padding-bottom: .25rem;
-        }
-
-        main {
-            max-width: 1200px;
-            min-height: 72vh;
-            margin: auto;
-            padding: 5rem max(4vw, 1.25rem);
-        }
-        body.vista-inicio main { display: none; }
-
-        .spa-view { animation: aparecer .35s ease both; }
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        section > h2 {
-            margin: 0 0 2rem;
-            font-size: clamp(2rem, 5vw, 3.25rem);
-            letter-spacing: -.04em;
-        }
-
-        section > h2::before {
-            content: "SELECCIÓN PIXEL";
-            display: block;
-            color: #93c5fd;
-            font-size: .72rem;
-            letter-spacing: .16em;
-        }
-
-        #productos > ul {
-            display: flex;
-            gap: 1.25rem;
-            margin: 0;
-            padding: .25rem .1rem 1.25rem;
-            overflow-x: auto;
-            list-style: none;
-            scroll-snap-type: x mandatory;
-            scrollbar-color: var(--azul) rgba(255, 255, 255, .08);
-        }
-
-        #productos li {
-            flex: 0 0 min(340px, 84vw);
-            overflow: hidden;
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, .10);
-            border-radius: 22px;
-            background:
-                linear-gradient(115deg, rgba(255, 255, 255, .10), transparent 22%),
-                linear-gradient(145deg, rgba(35, 52, 73, .97), rgba(11, 22, 40, .98));
-            box-shadow: inset 0 1px rgba(255, 255, 255, .13), 0 22px 50px rgba(0, 0, 0, .30);
-            scroll-snap-align: start;
-            transition: transform .2s ease, border-color .2s ease;
-        }
-
-        #productos li:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, .75);
-            box-shadow: inset 0 1px rgba(255, 255, 255, .17), 0 24px 55px rgba(37, 99, 235, .18);
-        }
-
-        #productos img {
-            width: 100%;
-            height: 190px;
-            display: block;
-            object-fit: cover;
-            border-radius: 14px;
-        }
-
-        #productos h3 { margin: 1rem 0 .25rem; font-size: 1.25rem; }
-        #productos p { margin: 0; color: var(--secundario); }
-
-        #contacto { max-width: 760px; margin: auto; }
-        #contacto h2::before { content: "HABLEMOS"; }
-        .contacto-tarjeta {
-            padding: clamp(1.5rem, 5vw, 3rem);
-            border: 1px solid rgba(255, 255, 255, .10);
-            border-radius: 24px;
-            background:
-                linear-gradient(115deg, rgba(255, 255, 255, .11), transparent 25%),
-                linear-gradient(145deg, rgba(35, 52, 73, .97), rgba(11, 22, 40, .98));
-            box-shadow: inset 0 1px rgba(255, 255, 255, .13), 0 22px 50px rgba(0, 0, 0, .30);
-        }
-        .contacto-tarjeta p { color: var(--secundario); }
-        .contacto-tarjeta ul { padding-left: 1.25rem; }
-        .contacto-tarjeta a { color: var(--cyan); }
-
-        footer {
-            padding: 3rem max(6vw, 1.5rem);
-            text-align: center;
-            background: rgba(15, 18, 30, .75);
-            border-top: 1px solid rgba(255, 255, 255, .08);
-        }
-
-        footer p { margin-top: 0; color: var(--secundario); }
-
-        a:focus-visible {
-            outline: 3px solid var(--cyan);
-            outline-offset: 5px;
-            border-radius: 3px;
-        }
-
-        @media (max-width: 600px) {
-            header { min-height: 58vh; }
-            main { padding-top: 3.5rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="Juan_Osega_PFY2201_CSS_Semana3.css">
 </head>
-<body class="vista-inicio">
-    <!-- Navegación hacia las secciones de la página. -->
+<body>
     <nav aria-label="Navegación principal">
+        <a class="marca" href="#inicio">Pixel Store</a>
         <ul>
             <li><a href="#inicio" aria-current="page">Inicio</a></li>
             <li><a href="#productos">Productos</a></li>
@@ -240,49 +17,79 @@
         </ul>
     </nav>
 
-    <!-- Vista inicial y presentación de la tienda. -->
-    <header id="inicio" class="spa-view">
+    <header class="hero">
+        <p class="eyebrow">Tienda digital de videojuegos</p>
         <h1>Pixel Store</h1>
-        <p>En Pixel Store creemos que cada videojuego es una puerta hacia un mundo extraordinario. Nuestra visión es acercar la magia de jugar a todas las personas, invitándolas a descubrir nuevas aventuras, explorar universos inolvidables y vivir historias que van mucho más allá de la pantalla.</p>
+        <p>Descubre nuevas aventuras, explora universos inolvidables y vive historias que van mucho más allá de la pantalla.</p>
     </header>
 
     <main>
-        <!-- Catálogo de productos destacados. -->
-        <section id="productos" class="spa-view" hidden>
-            <h2>Productos destacados</h2>
-            <ul>
+        <section id="inicio" class="vista activa" data-view>
+            <div class="intro">
+                <p class="eyebrow">Bienvenido</p>
+                <h2>La maravilla de jugar al alcance de todos</h2>
+                <p>Encuentra experiencias para cada estilo de jugador, desde combates a gran escala hasta aventuras llenas de misterio.</p>
+                <a class="boton" href="#productos">Explorar productos</a>
+            </div>
+        </section>
+
+        <section id="productos" class="vista" data-view>
+            <div class="encabezado-seccion">
+                <p class="eyebrow">Selección Pixel</p>
+                <h2>Productos destacados</h2>
+                <p>Una selección de títulos para comenzar tu próxima aventura.</p>
+            </div>
+            <ul class="catalogo">
                 <li>
-                    <h3>Battlefield 6</h3>
-                    <img src="images/battlefield.jpg" alt="Escena de combate del videojuego Battlefield 6" width="320" height="180">
-                    <p>Combate a gran escala, destrucción táctica y acción en equipo.</p>
+                    <article class="tarjeta">
+                        <img src="images/battlefield.jpg" alt="Escena de combate de Battlefield 6" width="320" height="180">
+                        <div class="tarjeta-contenido">
+                            <h3>Battlefield 6</h3>
+                            <p>Combate a gran escala, destrucción táctica y acción en equipo.</p>
+                        </div>
+                    </article>
                 </li>
                 <li>
-                    <h3>Helldivers II</h3>
-                    <img src="images/helldivers.webp" alt="Soldados del videojuego Helldivers II en una batalla espacial" width="320" height="180">
-                    <p>Defiende la galaxia junto a tu escuadrón en misiones explosivas.</p>
+                    <article class="tarjeta">
+                        <img src="images/helldivers.webp" alt="Soldados de Helldivers II en una batalla espacial" width="320" height="180">
+                        <div class="tarjeta-contenido">
+                            <h3>Helldivers II</h3>
+                            <p>Defiende la galaxia junto a tu escuadrón en misiones explosivas.</p>
+                        </div>
+                    </article>
                 </li>
                 <li>
-                    <h3>Returnal</h3>
-                    <img src="images/returnal.jpg" alt="Protagonista del videojuego Returnal en un planeta alienígena" width="320" height="180">
-                    <p>Rompe el ciclo de un planeta alienígena que cambia con cada derrota.</p>
+                    <article class="tarjeta">
+                        <img src="images/returnal.jpg" alt="Protagonista de Returnal en un planeta alienígena" width="320" height="180">
+                        <div class="tarjeta-contenido">
+                            <h3>Returnal</h3>
+                            <p>Rompe el ciclo de un planeta alienígena que cambia con cada derrota.</p>
+                        </div>
+                    </article>
                 </li>
                 <li>
-                    <h3>Shadow of the Colossus</h3>
-                    <img src="images/shadow.jpg" alt="Héroe frente a un coloso en Shadow of the Colossus" width="320" height="180">
-                    <p>Enfrenta criaturas monumentales en una aventura inolvidable.</p>
+                    <article class="tarjeta">
+                        <img src="images/shadow.jpg" alt="Héroe frente a un coloso en Shadow of the Colossus" width="320" height="180">
+                        <div class="tarjeta-contenido">
+                            <h3>Shadow of the Colossus</h3>
+                            <p>Enfrenta criaturas monumentales en una aventura inolvidable.</p>
+                        </div>
+                    </article>
                 </li>
             </ul>
         </section>
 
-        <!-- Vista con la información de contacto. -->
-        <section id="contacto" class="spa-view" hidden>
-            <h2>Contacto</h2>
+        <section id="contacto" class="vista" data-view>
+            <div class="encabezado-seccion">
+                <p class="eyebrow">Hablemos</p>
+                <h2>Contacto</h2>
+                <p>Estamos disponibles para resolver tus dudas y ayudarte a encontrar tu próximo juego.</p>
+            </div>
             <div class="contacto-tarjeta">
-                <p>¿Tienes dudas o buscas una recomendación? Nuestro equipo está disponible para ayudarte.</p>
-                <ul>
-                    <li>Correo: <a href="mailto:contacto@pixelstore.cl">contacto@pixelstore.cl</a></li>
-                    <li>Teléfono: <a href="tel:+56223456789">+56 2 2345 6789</a></li>
-                    <li>Horario: lunes a viernes, de 09:00 a 18:00 horas.</li>
+                <ul class="datos-contacto">
+                    <li><span>Correo</span><a href="mailto:contacto@pixelstore.cl">contacto@pixelstore.cl</a></li>
+                    <li><span>Teléfono</span><a href="tel:+56223456789">+56 2 2345 6789</a></li>
+                    <li><span>Horario</span><span>Lunes a viernes, de 09:00 a 18:00 horas.</span></li>
                 </ul>
             </div>
         </section>
@@ -293,15 +100,17 @@
     </footer>
 
     <script>
-        const vistas = document.querySelectorAll(".spa-view");
-        const enlaces = document.querySelectorAll("nav a");
+        const vistas = document.querySelectorAll("[data-view]");
+        const enlaces = document.querySelectorAll("nav a[href^='#']");
+        document.documentElement.classList.add("js-enabled");
 
         function mostrarVista(nombre) {
             const destino = document.getElementById(nombre) || document.getElementById("inicio");
-            document.body.classList.toggle("vista-inicio", destino.id === "inicio");
 
             vistas.forEach((vista) => {
-                vista.hidden = vista !== destino;
+                const activa = vista === destino;
+                vista.classList.toggle("activa", activa);
+                vista.setAttribute("aria-hidden", String(!activa));
             });
 
             enlaces.forEach((enlace) => {
@@ -312,8 +121,6 @@
                     enlace.removeAttribute("aria-current");
                 }
             });
-
-            window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         enlaces.forEach((enlace) => {
@@ -322,13 +129,11 @@
                 const nombre = enlace.getAttribute("href").slice(1);
                 history.pushState(null, "", `#${nombre}`);
                 mostrarVista(nombre);
+                window.scrollTo({ top: 0, behavior: "smooth" });
             });
         });
 
-        window.addEventListener("popstate", () => {
-            mostrarVista(location.hash.slice(1) || "inicio");
-        });
-
+        window.addEventListener("popstate", () => mostrarVista(location.hash.slice(1) || "inicio"));
         mostrarVista(location.hash.slice(1) || "inicio");
     </script>
 </body>

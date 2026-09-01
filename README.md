@@ -1,27 +1,22 @@
-# Proyecto acumulativo - PFY2201
+# Pixel Store
 
-Este proyecto reúne el trabajo acumulativo de las semanas 1 y 2 sobre la tienda de videojuegos Pixel Store.
+Sitio web responsivo para una tienda digital de videojuegos.
 
-## Archivos del proyecto
+## Archivos
 
-- `Juan_Osega_PFY2201_HTML_Semana1.html`: estructura y contenido de la página.
-- `Juan_Osega_PFY2201_CSS_Semana2.css`: estilos externos incorporados en la Semana 2.
-- Carpeta `images`: cuatro imágenes utilizadas por el catálogo.
+- `Juan_Osega_PFY2201_HTML_Semana1.html`: estructura semántica y contenido.
+- `Juan_Osega_PFY2201_CSS_Semana3.css`: estilos, variables, Flexbox, Grid y media queries.
+- `images/`: imágenes del catálogo.
 
-## Evidencias
+## Características
 
-- `Juan_Osega_PFY2201_Evidencias_Semana2.pdf`
+- Navegación accesible con `aria-current` y `:focus-visible`.
+- Contenido disponible sin JavaScript.
+- Navegación dinámica como mejora progresiva.
+- Catálogo adaptable con CSS Grid.
+- Navegación y componentes alineados con Flexbox.
+- Reducción de animaciones para usuarios que la solicitan.
 
-El PDF incluye una explicación breve de los cambios de la Semana 2 y las capturas del proyecto actualizado:
+## Ejecución
 
-1. Captura de la vista Inicio.
-2. Captura de la vista Productos.
-3. Captura de la vista Contacto.
-
-## Comprobación final
-
-1. Abrir el archivo HTML desde esta carpeta.
-2. Probar los enlaces Inicio, Productos y Contacto.
-3. Confirmar que aparecen las cuatro imágenes.
-4. Subir el HTML, el CSS, `images`, el PDF de evidencias y este archivo al repositorio público de GitHub.
-5. Entregar en AVA el archivo solicitado y el enlace del repositorio.
+Abre `Juan_Osega_PFY2201_HTML_Semana1.html` en un navegador moderno y prueba la navegación, las imágenes y las distintas resoluciones de pantalla.
