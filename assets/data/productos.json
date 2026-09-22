@@ -1,0 +1,6 @@
+[
+    {"id":1,"nombre":"Battlefield 6","categoria":"Acci\u00f3n","descripcion":"Combate a gran escala, destrucci\u00f3n t\u00e1ctica y acci\u00f3n en equipo.","precio":59990,"imagen":"assets/img/battlefield.jpg"},
+    {"id":2,"nombre":"Helldivers II","categoria":"Cooperativo","descripcion":"Defiende la galaxia junto a tu escuadr\u00f3n en misiones explosivas.","precio":39990,"imagen":"assets/img/helldivers.webp"},
+    {"id":3,"nombre":"Returnal","categoria":"Aventura","descripcion":"Rompe el ciclo de un planeta alien\u00edgena que cambia con cada derrota.","precio":29990,"imagen":"assets/img/returnal.jpg"},
+    {"id":4,"nombre":"Shadow of the Colossus","categoria":"Cl\u00e1sicos","descripcion":"Enfrenta criaturas monumentales en una aventura inolvidable.","precio":24990,"imagen":"assets/img/shadow.jpg"}
+]
