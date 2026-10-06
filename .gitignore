@@ -1,1 +1,7 @@
-/capturas/
+/capturas/*
+!/capturas/02-carrito.png
+!/capturas/03-carrito-vacio.png
+node_modules/
+dist/
+test-results/
+playwright-report/

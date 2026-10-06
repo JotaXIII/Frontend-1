@@ -9,22 +9,75 @@ index.html
 assets/
 ├── css/styles.css
 ├── data/productos.json
-├── img/
-└── js/app.js
+└── img/
+src/
+├── main.jsx
+├── App.jsx
+└── components/
+    ├── Producto.jsx
+    └── Carrito.jsx
 ```
 
 ## Funcionalidades
 
 - Diseño responsivo con Bootstrap 5.
 - Navbar adaptable y carrusel de imágenes.
-- Catálogo cargado desde un archivo JSON local mediante Fetch API.
+- Catálogo cargado desde un archivo JSON local mediante `useEffect` y Fetch API.
+- Gestión del catálogo, carrito, búsqueda y filtros mediante `useState`.
 - Búsqueda de productos mediante formulario.
 - Carrito dinámico con cantidades, total y eliminación de productos.
-- Mensaje visible cuando la carga del catálogo falla.
-- Código JavaScript organizado en funciones reutilizables.
+- Estados de carga, error y reintento, búsqueda sin resultados y carrito vacío.
+- Botones que cambian al agregar productos al carrito.
+- Componentes funcionales reutilizables y comentarios breves.
 
 ## Ejecución
 
-Para que Fetch API pueda leer el archivo JSON local, abre el proyecto mediante un servidor local y visita `index.html`.
+Requiere Node.js 20.19 o superior, o 22.12 o superior.
 
-El proyecto está preparado para publicarse en GitHub Pages desde la rama `gh-pages`.
+```sh
+npm ci
+npm run dev
+```
+
+Abre la dirección indicada por la terminal. El catálogo requiere un servidor; abrir el HTML directamente no ejecuta la aplicación.
+
+El carrito se reinicia al recargar la página. La opción de finalizar compra permanece deshabilitada porque no se procesan pagos.
+
+## Compilación y publicación
+
+```sh
+npm run build
+npm run preview
+```
+
+La carpeta `dist` contiene el sitio compilado, con rutas relativas compatibles con un subdirectorio.
+
+```sh
+npm run deploy
+```
+
+Este comando reemplaza el sitio de la rama remota `gh-pages` con el contenido de `dist`. Revisa la versión antes de publicarla. Mantén el código fuente en una rama distinta de `gh-pages` y selecciona esa rama de publicación con la carpeta raíz en la configuración de Pages.
+
+## Evidencias
+
+El informe actualizado está en [Juan_Osega_PFY2201_Evidencias_Semana8.pdf](Juan_Osega_PFY2201_Evidencias_Semana8.pdf). Su versión editable está en [Juan_Osega_PFY2201_Evidencias_Semana8.md](Juan_Osega_PFY2201_Evidencias_Semana8.md).
+
+Incluye dos capturas funcionales: catálogo con carrito y carrito vacío después de eliminar los productos. Falta una captura de Pages con la publicación de la versión React, su URL y la rama `gh-pages`. El informe de Semana 6 se conserva como antecedente.
+
+Para regenerar el PDF después de actualizar el contenido o las capturas:
+
+```sh
+python -m pip install reportlab
+python scripts/generar_evidencias.py
+```
+
+Entrega el PDF, el enlace del repositorio y el enlace confirmado del sitio. Las capturas complementan la revisión del código y del despliegue; no sustituyen una publicación funcional.
+
+## Verificación
+
+```sh
+npx playwright install chromium
+npm test
+```
+
+Las pruebas revisan el catálogo, cantidades y total del carrito, filtros, recuperación de errores y navegación móvil. Las capturas se guardan en `capturas/`.
