@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('catálogo, cantidades, total y eliminación', async ({ page }) => {
     const errores = [];
     page.on('pageerror', error => errores.push(error.message));
-    await page.goto('/');
+    await page.goto('./');
     await expect(page.locator('.product-card')).toHaveCount(4);
     await expect(page.locator('#contadorCarrito')).toHaveText('0');
     await expect.poll(() => page.locator('.product-card img').first().evaluate(imagen => imagen.naturalWidth)).toBeGreaterThan(0);
@@ -31,7 +31,7 @@ test('catálogo, cantidades, total y eliminación', async ({ page }) => {
 
 test('búsqueda combinada con categorías y vista móvil', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/');
+    await page.goto('./');
     await expect(page.locator('.product-card')).toHaveCount(4);
     await page.getByRole('button', { name: 'Aventura', exact: true }).click();
     await expect(page.locator('.product-card')).toHaveCount(1);
@@ -55,7 +55,7 @@ test('búsqueda combinada con categorías y vista móvil', async ({ page }) => {
 test('error de carga y recuperación mediante reintento', async ({ page }) => {
     let fallar = true;
     await page.route('**/productos-*.json', route => fallar ? route.fulfill({ status: 503, body: 'No disponible' }) : route.continue());
-    await page.goto('/');
+    await page.goto('./');
     await expect(page.getByText('No fue posible cargar el catálogo.', { exact: false })).toBeVisible();
     await expect(page.locator('.product-card')).toHaveCount(0);
     await page.screenshot({ path: 'capturas/05-error.png', fullPage: true });

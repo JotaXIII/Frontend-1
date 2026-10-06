@@ -10,7 +10,7 @@
 
 **Fecha de revisión:** 5 de octubre de 2026.
 
-**Estado:** implementación y evidencias locales verificadas; publicación de la versión React pendiente.
+**Estado:** código y aplicación React publicados; funcionamiento verificado en el sitio público. Pendiente únicamente la captura de configuración de Pages para completar las evidencias.
 
 ### Actualización del entregable anterior
 
@@ -21,11 +21,11 @@ Se mantiene el informe de Semana 6 como antecedente. Sus capturas de publicació
 ### Resultado de la verificación
 
 - Compilación de producción completada mediante `npm run build`.
-- Tres pruebas funcionales aprobadas mediante `npm test`.
+- Tres pruebas funcionales aprobadas localmente y en el sitio publicado mediante `npm test`.
 - Auditoría de dependencias sin vulnerabilidades reportadas mediante `npm audit`.
 - Dos capturas funcionales actuales incluidas en este informe.
 
-Las capturas se obtuvieron del sitio compilado servido localmente. La evaluación CL también requiere revisar el código y comprobar que la versión actual esté publicada y accesible.
+Las capturas incluidas se actualizaron desde el sitio público. La evaluación CL también requiere revisar el código y el funcionamiento de la aplicación publicada.
 
 ---
 
@@ -49,7 +49,7 @@ Las capturas se obtuvieron del sitio compilado servido localmente. La evaluació
 
 ### 5. Publicación · 20 puntos
 
-La compilación genera `dist` con rutas relativas. `npm run deploy` está configurado para publicar ese contenido en `gh-pages`. El código está en la rama local `exp3-s8`. La publicación del código actualizado y del sitio sigue pendiente; este criterio no se acredita todavía como CL.
+La compilación genera `dist` con rutas relativas. El código actualizado se publicó en `exp3-s8` y `npm run deploy` publicó el sitio en `gh-pages`. El despliegue terminó correctamente y tres pruebas funcionales pasaron en la URL pública. Falta adjuntar la captura de configuración de Pages como evidencia complementaria de este criterio.
 
 ---
 
@@ -63,7 +63,7 @@ La prueba comprueba además el contador de tres unidades. Después de eliminar B
 
 **Criterios relacionados:** gestión de estados, carga dinámica y renderizado condicional. La utilización de los hooks se acredita mediante el código señalado en la página anterior.
 
-**Origen:** versión de producción ejecutada localmente. Esta captura no constituye una evidencia de publicación.
+**Origen:** sitio público https://jotaxiii.github.io/Frontend-1/. La captura funcional se complementa con el enlace del sitio y la evidencia de configuración de Pages.
 
 ---
 
@@ -77,7 +77,7 @@ La prueba comprueba además que el contador vuelve a cero. La comparación con l
 
 **Criterios relacionados:** gestión del carrito y renderizado condicional de mensajes y botones.
 
-**Origen:** versión de producción ejecutada localmente.
+**Origen:** sitio público https://jotaxiii.github.io/Frontend-1/.
 
 ---
 
@@ -85,15 +85,17 @@ La prueba comprueba además que el contador vuelve a cero. La comparación con l
 
 ### Enlaces
 
-**Repositorio identificado:** https://github.com/JotaXIII/Frontend-1
+**Código fuente publicado:** https://github.com/JotaXIII/Frontend-1/tree/exp3-s8
 
-**Rama de código actual:** `exp3-s8`, disponible localmente; pendiente de publicación.
+**Rama de código actual:** `exp3-s8`, publicada y disponible para revisión.
 
 **Rama de despliegue:** `gh-pages`.
 
-**URL esperada del sitio:** https://jotaxiii.github.io/Frontend-1/
+**Sitio publicado y verificado:** https://jotaxiii.github.io/Frontend-1/
 
-La URL del sitio se deduce del repositorio. Confirma el enlace definitivo en la configuración de Pages después del despliegue. No se verificó en esta revisión la publicación de la versión React.
+**Despliegue verificado:** https://github.com/JotaXIII/Frontend-1/actions/runs/37400556241
+
+El despliegue finalizó con resultado satisfactorio. Se comprobó la versión React publicada, la carga de imágenes y productos, los cálculos del carrito, la eliminación, los filtros, la vista móvil y el reintento tras un error simulado.
 
 ### Mínimo de capturas propuesto: tres
 
@@ -101,16 +103,14 @@ La URL del sitio se deduce del repositorio. Confirma el enlace definitivo en la 
 2. Carrito después de eliminar los productos: mensaje de vacío, total $0 y botones «Agregar». Incluida como evidencia 2.
 3. Configuración de Pages después de publicar: mensaje de sitio disponible, URL, rama `gh-pages` y carpeta raíz. Pendiente.
 
-No se necesitan capturas adicionales de inicio, filtros, búsqueda, diseño móvil o errores para cubrir los entregables explícitos. Conserva las dos primeras o reemplázalas por las mismas vistas del sitio publicado. Si las tomas nuevamente, incluye la barra de direcciones para identificar la versión desplegada.
+No se necesitan capturas adicionales de inicio, filtros, búsqueda, diseño móvil o errores para cubrir los entregables explícitos. Las dos primeras ya corresponden al sitio publicado. Si las tomas nuevamente, incluye la barra de direcciones para identificar la versión desplegada.
 
 Las tres capturas complementan el código y los enlaces; no sustituyen una publicación funcional ni garantizan por sí solas una calificación CL.
 
 ### Pendientes antes de entregar
 
-- Publicar la rama de código para que el proyecto React pueda revisarse en el repositorio público.
-- Publicar `dist` en `gh-pages` y comprobar el catálogo, las imágenes y el carrito en el sitio remoto.
-- Agregar la tercera captura al informe y actualizar el estado de publicación una vez verificado.
-- Entregar en AVA el PDF actualizado, el enlace del repositorio y el enlace confirmado del despliegue.
+- Agregar la tercera captura, con el sitio disponible, su URL y la rama `gh-pages` visibles en la configuración de Pages.
+- Entregar en AVA el PDF actualizado, el enlace a la rama `exp3-s8` y el enlace al sitio publicado.
 
 ### Archivos de apoyo
 

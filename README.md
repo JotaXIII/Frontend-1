@@ -58,6 +58,12 @@ npm run deploy
 
 Este comando reemplaza el sitio de la rama remota `gh-pages` con el contenido de `dist`. Revisa la versión antes de publicarla. Mantén el código fuente en una rama distinta de `gh-pages` y selecciona esa rama de publicación con la carpeta raíz en la configuración de Pages.
 
+Código publicado: https://github.com/JotaXIII/Frontend-1/tree/exp3-s8
+
+Sitio publicado: https://jotaxiii.github.io/Frontend-1/
+
+La versión React y sus tres pruebas funcionales se verificaron en el sitio público.
+
 ## Evidencias
 
 El informe actualizado está en [Juan_Osega_PFY2201_Evidencias_Semana8.pdf](Juan_Osega_PFY2201_Evidencias_Semana8.pdf). Su versión editable está en [Juan_Osega_PFY2201_Evidencias_Semana8.md](Juan_Osega_PFY2201_Evidencias_Semana8.md).
