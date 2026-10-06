@@ -1,6 +1,9 @@
 /capturas/*
 !/capturas/02-carrito.png
 !/capturas/03-carrito-vacio.png
+!/capturas/evidencia-01-carrito.png
+!/capturas/evidencia-02-carrito-vacio.png
+!/capturas/evidencia-03-publicacion.png
 node_modules/
 dist/
 test-results/

@@ -10,7 +10,7 @@
 
 **Fecha de revisión:** 5 de octubre de 2026.
 
-**Estado:** código y aplicación React publicados; funcionamiento verificado en el sitio público. Pendiente únicamente la captura de configuración de Pages para completar las evidencias.
+**Estado:** código y aplicación React publicados; funcionamiento verificado en el sitio público. Las tres capturas de evidencia están incluidas.
 
 ### Actualización del entregable anterior
 
@@ -23,9 +23,9 @@ Se mantiene el informe de Semana 6 como antecedente. Sus capturas de publicació
 - Compilación de producción completada mediante `npm run build`.
 - Tres pruebas funcionales aprobadas localmente y en el sitio publicado mediante `npm test`.
 - Auditoría de dependencias sin vulnerabilidades reportadas mediante `npm audit`.
-- Dos capturas funcionales actuales incluidas en este informe.
+- Tres capturas actuales incluidas: carrito con productos, carrito vacío y sitio publicado.
 
-Las capturas incluidas se actualizaron desde el sitio público. La evaluación CL también requiere revisar el código y el funcionamiento de la aplicación publicada.
+Las dos primeras capturas muestran la ejecución local en `localhost:5173`; la tercera muestra el sitio público con su dirección visible. Las imágenes se conservan sin modificaciones. La evaluación CL también requiere revisar el código y el funcionamiento de la aplicación publicada.
 
 ---
 
@@ -49,27 +49,27 @@ Las capturas incluidas se actualizaron desde el sitio público. La evaluación C
 
 ### 5. Publicación · 20 puntos
 
-La compilación genera `dist` con rutas relativas. El código actualizado se publicó en `exp3-s8` y `npm run deploy` publicó el sitio en `gh-pages`. El despliegue terminó correctamente y tres pruebas funcionales pasaron en la URL pública. Falta adjuntar la captura de configuración de Pages como evidencia complementaria de este criterio.
+La compilación genera `dist` con rutas relativas. El código actualizado se publicó en `exp3-s8` y `npm run deploy` publicó el sitio en `gh-pages`. El despliegue terminó correctamente y tres pruebas funcionales pasaron en la URL pública. La tercera captura muestra la tienda accesible en su dirección de GitHub Pages.
 
 ---
 
 # Evidencia 1 · Catálogo y carrito
 
-![Catálogo y carrito con productos seleccionados](capturas/02-carrito.png)
+![Catálogo y carrito con productos seleccionados](capturas/evidencia-01-carrito.png)
 
-El catálogo muestra productos cargados desde JSON. Se agregaron dos unidades de Battlefield 6 y una de Helldivers II. El carrito presenta cantidades, eliminación y un total de $159.970. Los botones de los productos seleccionados cambian a «En el carrito · +1».
+El catálogo muestra productos cargados desde JSON. El carrito presenta dos unidades de Battlefield 6 y una de Helldivers II, botones de eliminación y un total de $159.970. La captura permite comprobar los productos seleccionados, sus cantidades y el cálculo del total.
 
-La prueba comprueba además el contador de tres unidades. Después de eliminar Battlefield 6, comprueba una unidad y un total de $39.990.
+La prueba comprueba además el contador de tres unidades y el cambio del botón a «En el carrito · +1», que queda fuera del área visible de esta captura. Después de eliminar Battlefield 6, comprueba una unidad y un total de $39.990.
 
 **Criterios relacionados:** gestión de estados, carga dinámica y renderizado condicional. La utilización de los hooks se acredita mediante el código señalado en la página anterior.
 
-**Origen:** sitio público https://jotaxiii.github.io/Frontend-1/. La captura funcional se complementa con el enlace del sitio y la evidencia de configuración de Pages.
+**Origen:** captura `1.png`, tomada en `localhost:5173`. El funcionamiento equivalente también se verificó mediante pruebas en el sitio público.
 
 ---
 
 # Evidencia 2 · Carrito vacío
 
-![Carrito vacío después de eliminar los productos](capturas/03-carrito-vacio.png)
+![Carrito vacío después de eliminar los productos](capturas/evidencia-02-carrito-vacio.png)
 
 Después de eliminar un producto y vaciar el carrito, aparece «Tu carrito está vacío», el total vuelve a $0 y «Vaciar carrito» queda deshabilitado. Los botones del catálogo vuelven a «Agregar».
 
@@ -77,7 +77,19 @@ La prueba comprueba además que el contador vuelve a cero. La comparación con l
 
 **Criterios relacionados:** gestión del carrito y renderizado condicional de mensajes y botones.
 
-**Origen:** sitio público https://jotaxiii.github.io/Frontend-1/.
+**Origen:** captura `2.png`, tomada en `localhost:5173`.
+
+---
+
+# Evidencia 3 · Sitio publicado
+
+![Sitio publicado con la dirección de GitHub Pages visible](capturas/evidencia-03-publicacion.png)
+
+La barra de direcciones muestra `jotaxiii.github.io/Frontend-1/`. La página presenta la navegación, el contador del carrito, el carrusel, los filtros y el comienzo del catálogo, conservando el estilo visual de la tienda.
+
+**Criterio relacionado:** publicación y acceso público al sitio. Esta captura muestra la aplicación publicada; la rama de despliegue se acredita con la publicación verificada y el enlace al repositorio.
+
+**Origen:** captura `3.png`, tomada en el sitio público https://jotaxiii.github.io/Frontend-1/.
 
 ---
 
@@ -97,20 +109,20 @@ La prueba comprueba además que el contador vuelve a cero. La comparación con l
 
 El despliegue finalizó con resultado satisfactorio. Se comprobó la versión React publicada, la carga de imágenes y productos, los cálculos del carrito, la eliminación, los filtros, la vista móvil y el reintento tras un error simulado.
 
-### Mínimo de capturas propuesto: tres
+### Capturas incluidas: tres
 
-1. Catálogo con el carrito abierto y productos agregados: cantidades, total y al menos un botón «En el carrito · +1». Incluida como evidencia 1.
+1. Catálogo con el carrito abierto y productos agregados: cantidades, total y botones de eliminación. Incluida como evidencia 1.
 2. Carrito después de eliminar los productos: mensaje de vacío, total $0 y botones «Agregar». Incluida como evidencia 2.
-3. Configuración de Pages después de publicar: mensaje de sitio disponible, URL, rama `gh-pages` y carpeta raíz. Pendiente.
+3. Sitio publicado con la dirección de GitHub Pages visible. Incluida como evidencia 3.
 
-No se necesitan capturas adicionales de inicio, filtros, búsqueda, diseño móvil o errores para cubrir los entregables explícitos. Las dos primeras ya corresponden al sitio publicado. Si las tomas nuevamente, incluye la barra de direcciones para identificar la versión desplegada.
+No se necesitan capturas adicionales de inicio, filtros, búsqueda, diseño móvil o errores para cubrir los entregables explícitos. Las capturas funcionales locales se complementan con la captura del sitio publicado, los enlaces y las pruebas realizadas sobre la versión remota.
 
 Las tres capturas complementan el código y los enlaces; no sustituyen una publicación funcional ni garantizan por sí solas una calificación CL.
 
-### Pendientes antes de entregar
+### Entrega en AVA
 
-- Agregar la tercera captura, con el sitio disponible, su URL y la rama `gh-pages` visibles en la configuración de Pages.
-- Entregar en AVA el PDF actualizado, el enlace a la rama `exp3-s8` y el enlace al sitio publicado.
+- Adjuntar el PDF actualizado, que incluye las tres capturas.
+- Compartir el enlace a la rama `exp3-s8` y el enlace al sitio publicado.
 
 ### Archivos de apoyo
 

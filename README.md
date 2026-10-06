@@ -68,7 +68,7 @@ La versión React y sus tres pruebas funcionales se verificaron en el sitio púb
 
 El informe actualizado está en [Juan_Osega_PFY2201_Evidencias_Semana8.pdf](Juan_Osega_PFY2201_Evidencias_Semana8.pdf). Su versión editable está en [Juan_Osega_PFY2201_Evidencias_Semana8.md](Juan_Osega_PFY2201_Evidencias_Semana8.md).
 
-Incluye dos capturas funcionales: catálogo con carrito y carrito vacío después de eliminar los productos. Falta una captura de Pages con la publicación de la versión React, su URL y la rama `gh-pages`. El informe de Semana 6 se conserva como antecedente.
+Incluye las tres capturas aportadas: catálogo con carrito, carrito vacío y sitio publicado con su URL visible. Las dos primeras muestran la ejecución local y la tercera acredita el acceso al sitio en GitHub Pages. El informe de Semana 6 se conserva como antecedente.
 
 Para regenerar el PDF después de actualizar el contenido o las capturas:
 
