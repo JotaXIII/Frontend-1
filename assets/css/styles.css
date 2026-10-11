@@ -54,10 +54,15 @@ body {
 
 .list-group-item a, a { color: var(--acento); }
 
-a:focus-visible, button:focus-visible, input:focus-visible {
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible {
     outline: 3px solid #facc15;
     outline-offset: 3px;
 }
+
+section { scroll-margin-top: 6rem; }
+summary { cursor: pointer; }
+textarea { resize: vertical; }
+.text-secondary { color: #adb5bd !important; }
 
 @media (max-width: 991.98px) {
     .hero-section { min-height: auto; padding-top: 8rem; }
