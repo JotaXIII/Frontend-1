@@ -16,10 +16,10 @@ Abre la URL que muestra la terminal. El sitio requiere un servidor; abrir el HTM
 ## Uso
 
 - Inicio muestra la portada y el carrusel de destacados.
-- Productos carga videojuegos desde `assets/data/productos.json`. Las tarjetas incluyen imagen, nombre, categoría, descripción y precio en CLP.
+- Productos carga videojuegos desde `assets/data/productos.json`. Las tarjetas incluyen imagen, nombre, categorías, descripción y precio en CLP. Pulsa la portada para verla completa; cierra con el botón, Escape o pulsando fuera del contenido.
 - Los filtros se combinan con la búsqueda por nombre, categoría o descripción. Pulsa Buscar para aplicar el texto y bórralo para retirarlo.
 - Agregar incorpora un videojuego al carrito. Repetir la acción aumenta su cantidad. El panel permite eliminar productos y vaciar el carrito.
-- Catálogo permite añadir videojuegos con nombre, categoría, precio entero positivo, descripción y portada local. Eliminar requiere confirmación y retira el videojuego también del carrito.
+- Administración abre una vista separada para gestionar el catálogo y permite añadir videojuegos con nombre, una o varias categorías, precio entero positivo, descripción y portada local. Eliminar requiere confirmación y retira el videojuego también del carrito.
 - Contacto valida nombre, email y mensaje, muestra errores junto a cada campo y enfoca el primero incorrecto.
 
 El catálogo y el carrito se reinician al recargar. El envío del formulario es simulado: no se transmite información ni se envían correos. Finalizar compra permanece deshabilitado; no se procesan pagos. La gestión del catálogo es local y no incluye autenticación.
@@ -47,15 +47,13 @@ src/
 tests/
   tienda.spec.js
   formularios.spec.js
-scripts/
-  empaquetar.ps1
 ```
 
 `App` centraliza el estado del catálogo, categorías y carrito, y distribuye datos y callbacks mediante props. `ListaVideojuegos` mantiene la búsqueda y genera tarjetas con `filter` y `map`. Los formularios mantienen valores, errores y confirmaciones con `useState`. `useEffect` carga el JSON mediante Fetch API y cancela solicitudes pendientes al desmontar. React actualiza el DOM al cambiar el estado; los formularios enfocan el primer campo inválido.
 
 Bootstrap aporta navegación colapsable, carrusel, tarjetas, formularios, alertas y panel lateral. Su cuadrícula y Flexbox organizan el sitio; el CSS propio ajusta colores, foco, imágenes y pantallas estrechas.
 
-Para incorporar portadas, agrega archivos a `assets/img/`. Modifica el catálogo inicial en el JSON: cada objeto necesita `id` numérico único, `nombre`, `categoria`, `precio` positivo, `descripcion` e `imagen` con una ruta de portada existente.
+Para incorporar portadas, agrega archivos a `assets/img/`. Modifica el catálogo inicial en el JSON: cada objeto necesita `id` numérico único, `nombre`, `categorias` como una lista no vacía de textos, `precio` positivo, `descripcion` e `imagen` con una ruta de portada existente.
 
 ## Compilación
 
@@ -73,7 +71,7 @@ npx playwright install chromium
 npm test
 ```
 
-La configuración incluye siete escenarios para Chromium, Google Chrome y Microsoft Edge: carrito y totales, filtros y navegación móvil, error de carga y reintento, contacto inválido y válido, altas y bajas del catálogo, formularios a 320 px y recuperación de un catálogo inválido. Las pruebas compilan y sirven el sitio automáticamente.
+La configuración incluye ocho escenarios para Chromium, Google Chrome y Microsoft Edge: carrito y totales, filtros y navegación móvil, error de carga y reintento, contacto inválido y válido, altas y bajas del catálogo, formularios a 320 px y recuperación de un catálogo inválido y ampliación de portadas. Las pruebas compilan y sirven el sitio automáticamente.
 
 Para ejecutar un solo navegador:
 
@@ -95,16 +93,10 @@ npm run deploy
 
 Este comando compila y publica `dist` en la rama remota `gh-pages`, reemplazando su contenido. GitHub Pages debe apuntar a esa rama y su carpeta raíz. La publicación es independiente del envío del código fuente.
 
-## Paquete y presentación
+## Descargar el proyecto
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/empaquetar.ps1
-```
-
-Genera `JuanCarlos_Osega_PFY2201_EFT_FRONT_END_I.zip` en la carpeta superior, con una carpeta interna del mismo nombre. Incluye código, recursos, configuración, dependencias declaradas, pruebas y documentación; excluye `.git`, `node_modules`, compilaciones y resultados temporales.
-
-La guía de presentación está en [PRESENTACION.md](PRESENTACION.md). El video individual debe grabarse y exportarse en MP4.
+En GitHub, selecciona la rama `eft-s9` y utiliza **Code → Download ZIP**. Extrae el archivo y sigue las instrucciones de instalación. El repositorio incluye código, recursos, pruebas y configuración; las dependencias se instalan con `npm ci`.
 
 ## Resultado de verificación
 
-Los siete escenarios pasan en Chromium, Google Chrome y Microsoft Edge: 21 pruebas en total, con vistas de escritorio y pantallas de 390 y 320 px. Firefox y WebKit están disponibles mediante PLAYWRIGHT_ALL_ENGINES=1, pero sus ejecutables no pudieron iniciar en este entorno; su compatibilidad queda pendiente de verificación.
+Los ocho escenarios pasan en Chromium, Google Chrome y Microsoft Edge: 24 pruebas en total, con vistas de escritorio y pantallas de 390 y 320 px. Firefox y WebKit están disponibles mediante PLAYWRIGHT_ALL_ENGINES=1, pero sus ejecutables no pudieron iniciar en este entorno; su compatibilidad queda pendiente de verificación.

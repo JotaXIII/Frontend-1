@@ -4,8 +4,8 @@ import Producto from './Producto.jsx';
 export default function ListaVideojuegos({ productos, carrito, categoria, categorias, onCategoria, cargando, error, onReintentar, onAgregar }) {
     const [busqueda, setBusqueda] = useState('');
     const [termino, setTermino] = useState('');
-    const visibles = productos.filter(producto => (categoria === 'Todos' || producto.categoria === categoria) &&
-        `${producto.nombre} ${producto.categoria} ${producto.descripcion}`.toLocaleLowerCase('es').includes(termino.toLocaleLowerCase('es')));
+    const visibles = productos.filter(producto => (categoria === 'Todos' || producto.categorias.includes(categoria)) &&
+        `${producto.nombre} ${producto.categorias.join(' ')} ${producto.descripcion}`.toLocaleLowerCase('es').includes(termino.toLocaleLowerCase('es')));
     return <section id="productos" className="py-5" aria-labelledby="tituloProductos"><div className="container py-4">
             <div className="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
                 <div>

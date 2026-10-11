@@ -59,7 +59,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     outline-offset: 3px;
 }
 
+.portada-boton { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.portada-boton:focus-visible { outline-offset: -4px; }
+.visor-imagen { width: min(1100px, 94vw); max-width: 94vw; max-height: 94dvh; padding: 1rem; color: #f8fafc; background: #080a12; border: 1px solid #495057; border-radius: .75rem; }
+.visor-imagen::backdrop { background: rgba(0, 0, 0, .85); }
+.imagen-completa { display: block; width: 100%; height: auto; max-height: 78dvh; object-fit: contain; }
+.visor-detalle { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: center; }
+.visor-datos { overflow-wrap: anywhere; }
+@media (max-width: 575.98px) {
+    .visor-detalle { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .visor-detalle .imagen-completa { max-height: 50dvh; }
+}
+
 section { scroll-margin-top: 6rem; }
+.administracion-vista { padding-top: 5rem; min-height: calc(100vh - 5rem); }
 summary { cursor: pointer; }
 textarea { resize: vertical; }
 .text-secondary { color: #adb5bd !important; }

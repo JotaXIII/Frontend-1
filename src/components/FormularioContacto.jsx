@@ -26,7 +26,7 @@ export default function FormularioContacto() {
             document.getElementById(`contacto-${Object.keys(fallos)[0]}`).focus();
             return;
         }
-        setConfirmacion(`Gracias, ${datos.nombre.trim()}. Tu mensaje es válido. El envío es simulado y no se ha enviado un correo.`);
+        setConfirmacion(`Gracias, ${datos.nombre.trim()}. Tu mensaje ha sido enviado y pronto responderemos tu consulta. Muchas gracias.`);
         setDatos(inicial);
     }
 

@@ -1,5 +1,43 @@
 import { test, expect } from '@playwright/test';
 
+test('portadas completas se amplían y cierran en escritorio y móvil', async ({ page }) => {
+    await page.goto('./');
+    for (const width of [1440, 320]) {
+        await page.setViewportSize({ width, height: 900 });
+        const abrir = page.getByRole('button', { name: 'Ampliar imagen de Battlefield 6', exact: true });
+        await abrir.click();
+        const visor = page.getByRole('dialog', { name: 'Battlefield 6', exact: true });
+        await expect(visor).toBeVisible();
+        const imagen = visor.getByRole('img', { name: 'Portada completa de Battlefield 6', exact: true });
+        await expect(imagen).toBeVisible();
+        await expect(visor.getByRole('heading', { name: 'Battlefield 6', exact: true })).toBeVisible();
+        await expect(visor).toContainText('Combate a gran escala');
+        await expect(visor).toContainText('$59.990');
+        const posicionImagen = await imagen.boundingBox();
+        const posicionDatos = await visor.locator('.visor-datos').boundingBox();
+        if (width > 575) expect(posicionDatos.x).toBeGreaterThanOrEqual(posicionImagen.x + posicionImagen.width);
+        else expect(posicionDatos.y).toBeGreaterThanOrEqual(posicionImagen.y + posicionImagen.height);
+        expect(await imagen.evaluate(img => getComputedStyle(img).objectFit)).toBe('contain');
+        const caja = await visor.boundingBox();
+        expect(caja.width).toBeLessThanOrEqual(width);
+        expect(caja.height).toBeLessThanOrEqual(900);
+        const cantidadInicial = Number(await page.locator('#contadorCarrito').textContent());
+        const agregar = visor.getByRole('button', { name: /Agregar al carrito|En el carrito/ });
+        await agregar.click();
+        await expect(agregar).toHaveText('En el carrito · +1');
+        await agregar.click();
+        await expect(page.locator('#contadorCarrito')).toHaveText(String(cantidadInicial + 2));
+        await page.screenshot({ path: test.info().outputPath(`portada-${width}.png`) });
+        await page.keyboard.press('Escape');
+        await expect(visor).not.toBeVisible();
+        await expect(abrir).toBeFocused();
+        await abrir.click();
+        await visor.getByRole('button', { name: 'Cerrar imagen', exact: true }).click();
+        await expect(visor).not.toBeVisible();
+        await expect(page.locator('#contadorCarrito')).toHaveText(String(cantidadInicial + 2));
+    }
+});
+
 test('catálogo, cantidades, total y eliminación', async ({ page }) => {
     const errores = [];
     page.on('pageerror', error => errores.push(error.message));
@@ -34,8 +72,9 @@ test('búsqueda combinada con categorías y vista móvil', async ({ page }) => {
     await page.goto('./');
     await expect(page.locator('.product-card')).toHaveCount(4);
     await page.getByRole('button', { name: 'Aventura', exact: true }).click();
-    await expect(page.locator('.product-card')).toHaveCount(1);
-    await expect(page.locator('.product-card')).toContainText('Returnal');
+    await expect(page.locator('.product-card')).toHaveCount(2);
+    await expect(page.locator('.product-card').filter({ hasText: 'Returnal' })).toHaveCount(1);
+    await expect(page.locator('.product-card').filter({ hasText: 'Shadow of the Colossus' })).toHaveCount(1);
     await page.getByRole('searchbox').fill('Battlefield');
     await page.getByRole('button', { name: 'Buscar', exact: true }).click();
     await expect(page.getByText('No encontramos productos con esa búsqueda.', { exact: true })).toBeVisible();

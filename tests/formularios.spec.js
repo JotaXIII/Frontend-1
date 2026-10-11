@@ -16,7 +16,7 @@ test('contacto rechaza datos inválidos y acepta un mensaje completo', async ({ 
     await page.getByLabel('Email', { exact: true }).fill('cliente@example.com');
     await page.getByLabel('Mensaje', { exact: true }).fill('Quisiera consultar la disponibilidad de Returnal.');
     await page.getByRole('button', { name: 'Enviar mensaje', exact: true }).click();
-    await expect(page.getByText('Gracias, Cliente.', { exact: false })).toContainText('no se ha enviado un correo');
+    await expect(page.getByText('Gracias, Cliente.', { exact: false })).toHaveText('Gracias, Cliente. Tu mensaje ha sido enviado y pronto responderemos tu consulta. Muchas gracias.');
     await expect(page.locator('#contacto-nombre')).toHaveValue('');
     await expect(page.locator('#contacto-email-error')).toHaveCount(0);
     await page.screenshot({ path: test.info().outputPath('contacto.png'), fullPage: true });
@@ -25,11 +25,19 @@ test('contacto rechaza datos inválidos y acepta un mensaje completo', async ({ 
 test('altas, filtros y bajas mantienen catálogo y carrito sincronizados', async ({ page }) => {
     await page.goto('./');
     await expect(page.locator('.product-card')).toHaveCount(4);
+    await expect(page.locator('#administracion')).not.toBeVisible();
+    await page.getByRole('link', { name: 'Administración', exact: true }).click();
+    await expect(page.locator('#administracion')).toBeVisible();
+    await expect(page.locator('#productos')).not.toBeVisible();
     await page.getByText('Abrir gestión del catálogo', { exact: true }).click();
     await page.getByRole('button', { name: 'Agregar videojuego', exact: true }).click();
     await expect(page.locator('#juego-nombre-error')).toBeVisible();
+    await expect(page.locator('#juego-categorias-error')).toHaveText('Selecciona al menos una categoría.');
     await page.getByLabel('Nombre del videojuego', { exact: true }).fill('Nueva aventura');
-    await page.getByLabel('Categoría', { exact: true }).selectOption({ label: 'Aventura' });
+    await page.getByRole('checkbox', { name: 'Aventura', exact: true }).check();
+    await page.getByRole('checkbox', { name: 'Cooperativo', exact: true }).check();
+    await page.getByRole('checkbox', { name: 'Acción', exact: true }).check();
+    await page.getByRole('checkbox', { name: 'Acción', exact: true }).uncheck();
     await page.getByLabel('Precio en CLP', { exact: true }).fill('-1');
     await page.getByLabel('Descripción', { exact: true }).fill('Explora un mundo lleno de aventuras.');
     await page.getByLabel('Portada', { exact: true }).selectOption({ label: 'returnal.jpg' });
@@ -39,12 +47,22 @@ test('altas, filtros y bajas mantienen catálogo y carrito sincronizados', async
     await page.getByLabel('Precio en CLP', { exact: true }).fill('15990');
     await page.getByRole('button', { name: 'Agregar videojuego', exact: true }).click();
     await expect(page.locator('.product-card')).toHaveCount(5);
+    await page.getByRole('link', { name: 'Productos', exact: true }).click();
+    await expect(page.locator('#productos')).toBeVisible();
     await page.getByRole('button', { name: 'Aventura', exact: true }).click();
-    await expect(page.locator('.product-card')).toHaveCount(2);
+    await expect(page.locator('.product-card')).toHaveCount(3);
     const tarjeta = page.locator('.product-card').filter({ hasText: 'Nueva aventura' });
+    await expect(tarjeta.locator('.badge')).toHaveText(['Aventura', 'Cooperativo']);
+    await page.getByRole('button', { name: 'Cooperativo', exact: true }).click();
+    await expect(tarjeta).toBeVisible();
+    await page.getByRole('searchbox').fill('Nueva aventura');
+    await page.getByRole('button', { name: 'Buscar', exact: true }).click();
+    await expect(page.locator('.product-card')).toHaveCount(1);
+    await page.getByRole('searchbox').fill('');
     await tarjeta.getByRole('button', { name: 'Agregar', exact: true }).click();
     await expect(page.locator('#contadorCarrito')).toHaveText('1');
     await expect.poll(() => tarjeta.locator('img').evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+    await page.getByRole('link', { name: 'Administración', exact: true }).click();
     await page.getByRole('button', { name: 'Eliminar del catálogo Nueva aventura', exact: true }).click();
     await page.getByRole('button', { name: 'Cancelar', exact: true }).click();
     await expect(tarjeta).toHaveCount(1);
@@ -53,6 +71,8 @@ test('altas, filtros y bajas mantienen catálogo y carrito sincronizados', async
     await expect(tarjeta).toHaveCount(0);
     await expect(page.locator('.product-card')).toHaveCount(4);
     await expect(page.locator('#contadorCarrito')).toHaveText('0');
+    await page.getByRole('link', { name: 'Productos', exact: true }).click();
+    await expect(page.locator('#productos')).toBeVisible();
     await page.screenshot({ path: test.info().outputPath('gestion.png'), fullPage: true });
 });
 
@@ -60,7 +80,12 @@ test('formularios se adaptan a pantallas estrechas', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 740 });
     await page.goto('./');
     await expect(page.locator('.product-card')).toHaveCount(4);
+    await page.getByRole('button', { name: 'Abrir menú', exact: true }).click();
+    await page.getByRole('link', { name: 'Administración', exact: true }).click();
+    await expect(page.locator('#administracion')).toBeVisible();
     await page.getByText('Abrir gestión del catálogo', { exact: true }).click();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.getByRole('link', { name: 'Contacto', exact: true }).click();
     await page.getByRole('button', { name: 'Enviar mensaje', exact: true }).click();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: test.info().outputPath('movil-formularios.png'), fullPage: true });
