@@ -6,7 +6,13 @@ const formatoPrecio = new Intl.NumberFormat('es-CL', {
 
 export { formatoPrecio };
 
-export default function Producto({ producto, seleccionado, onAgregar }) {
+export default function Producto({ producto, cantidad = 0, onAgregar, onCantidad }) {
+    const seleccionado = cantidad > 0;
+    const controlesCantidad = <div className="d-inline-flex align-items-center gap-2" role="group" aria-label={`Cantidad de ${producto.nombre}`}>
+        <button type="button" className="btn btn-sm btn-outline-info" onClick={() => onCantidad(producto.id, -1)} aria-label={`Disminuir cantidad de ${producto.nombre}`}>−</button>
+        <span aria-label={`Unidades de ${producto.nombre}`} aria-live="polite">{cantidad}</span>
+        <button type="button" className="btn btn-sm btn-outline-info" onClick={() => onAgregar(producto)} aria-label={`Aumentar cantidad de ${producto.nombre}`}>+</button>
+    </div>;
     const visor = useRef(null);
     const tituloVisor = useId();
     return <div className="col">
@@ -22,9 +28,7 @@ export default function Producto({ producto, seleccionado, onAgregar }) {
                 <p className="card-text text-secondary flex-grow-1">{producto.descripcion}</p>
                 <div className="d-flex justify-content-between align-items-center gap-2 mt-3">
                     <strong>{formatoPrecio.format(producto.precio)}</strong>
-                    <button className={`btn btn-sm ${seleccionado ? 'btn-outline-info' : 'btn-info'}`} type="button" onClick={() => onAgregar(producto)}>
-                        {seleccionado ? 'En el carrito · +1' : 'Agregar'}
-                    </button>
+                    {seleccionado ? controlesCantidad : <button className="btn btn-sm btn-info" type="button" onClick={() => onAgregar(producto)}>Agregar</button>}
                 </div>
             </div>
         </article>
@@ -44,9 +48,7 @@ export default function Producto({ producto, seleccionado, onAgregar }) {
                         <p className="small text-secondary mb-1">Precio en CLP</p>
                         <strong className="h3 mb-0">{formatoPrecio.format(producto.precio)}</strong>
                         <div className="mt-4">
-                            <button type="button" className="btn btn-info" onClick={() => onAgregar(producto)}>
-                                {seleccionado ? 'En el carrito · +1' : 'Agregar al carrito'}
-                            </button>
+                            {seleccionado ? controlesCantidad : <button type="button" className="btn btn-info" onClick={() => onAgregar(producto)}>Agregar al carrito</button>}
                         </div>
                     </div>
                 </div>

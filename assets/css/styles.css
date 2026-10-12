@@ -72,6 +72,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 section { scroll-margin-top: 6rem; }
+#contacto {
+    margin-top: clamp(4rem, 8vw, 8rem);
+    min-height: calc(100svh - 6rem);
+}
 .administracion-vista { padding-top: 5rem; min-height: calc(100vh - 5rem); }
 summary { cursor: pointer; }
 textarea { resize: vertical; }

@@ -86,7 +86,7 @@ export default function App() {
         <main>
             <div hidden={administracion}>
             <Inicio />
-            <ListaVideojuegos productos={productos} carrito={carrito} categoria={categoria} categorias={categorias} onCategoria={setCategoria} cargando={cargando} error={error} onReintentar={() => setIntento(actual => actual + 1)} onAgregar={agregarProducto} />
+            <ListaVideojuegos productos={productos} carrito={carrito} categoria={categoria} categorias={categorias} onCategoria={setCategoria} cargando={cargando} error={error} onReintentar={() => setIntento(actual => actual + 1)} onAgregar={agregarProducto} onCantidad={cambiarCantidad} />
             <FormularioContacto />
             </div>
             <div hidden={!administracion} className="administracion-vista">

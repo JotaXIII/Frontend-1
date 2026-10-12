@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Producto from './Producto.jsx';
 
-export default function ListaVideojuegos({ productos, carrito, categoria, categorias, onCategoria, cargando, error, onReintentar, onAgregar }) {
+export default function ListaVideojuegos({ productos, carrito, categoria, categorias, onCategoria, cargando, error, onReintentar, onAgregar, onCantidad }) {
     const [busqueda, setBusqueda] = useState('');
     const [termino, setTermino] = useState('');
     const visibles = productos.filter(producto => (categoria === 'Todos' || producto.categorias.includes(categoria)) &&
@@ -26,7 +26,7 @@ export default function ListaVideojuegos({ productos, carrito, categoria, catego
                 {!cargando && !error && visibles.length === 0 && <p className="alert alert-warning">No encontramos productos con esa búsqueda.</p>}
             </div>
             <div id="catalogo" className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" aria-busy={cargando}>
-                {!cargando && !error && visibles.map(producto => <Producto key={producto.id} producto={producto} seleccionado={carrito.some(item => item.id === producto.id)} onAgregar={onAgregar} />)}
+                {!cargando && !error && visibles.map(producto => <Producto key={producto.id} producto={producto} cantidad={carrito.find(item => item.id === producto.id)?.cantidad ?? 0} onAgregar={onAgregar} onCantidad={onCantidad} />)}
             </div>
 
     </div></section>;
