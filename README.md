@@ -18,7 +18,7 @@ Abre la URL que muestra la terminal. El sitio requiere un servidor; abrir el HTM
 - Inicio muestra la portada y el carrusel de destacados.
 - Productos carga videojuegos desde `assets/data/productos.json`. Las tarjetas incluyen imagen, nombre, categorías, descripción y precio en CLP. Pulsa la portada para verla completa; cierra con el botón, Escape o pulsando fuera del contenido.
 - Los filtros se combinan con la búsqueda por nombre, categoría o descripción. Pulsa Buscar para aplicar el texto y bórralo para retirarlo.
-- Agregar incorpora un videojuego al carrito. Repetir la acción aumenta su cantidad. El panel permite eliminar productos y vaciar el carrito.
+- Agregar incorpora un videojuego al carrito. Repetir la acción aumenta su cantidad. El panel muestra controles − y + para ajustar las cantidades, el subtotal por producto y el total. Disminuir una cantidad a cero elimina el producto; también se puede eliminar directamente o vaciar el carrito.
 - Administración abre una vista separada para gestionar el catálogo y permite añadir videojuegos con nombre, una o varias categorías, precio entero positivo, descripción y portada local. Eliminar requiere confirmación y retira el videojuego también del carrito.
 - Contacto valida nombre, email y mensaje, muestra errores junto a cada campo y enfoca el primero incorrecto.
 

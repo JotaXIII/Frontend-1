@@ -67,6 +67,10 @@ export default function App() {
         setCategoria('Todos');
     }
 
+    function cambiarCantidad(id, cambio) {
+        setCarrito(actual => actual.map(item => item.id === id ? { ...item, cantidad: item.cantidad + cambio } : item).filter(item => item.cantidad > 0));
+    }
+
     function eliminarVideojuego(id) {
         setProductos(actual => actual.filter(item => item.id !== id));
         setCarrito(actual => actual.filter(item => item.id !== id));
@@ -92,7 +96,7 @@ export default function App() {
         </main>
         <div className="offcanvas offcanvas-end text-bg-dark" tabIndex="-1" id="panelCarrito" aria-labelledby="tituloCarrito">
             <div className="offcanvas-header border-bottom border-secondary"><h2 id="tituloCarrito" className="offcanvas-title h4">Tu carrito</h2><button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar carrito" /></div>
-            <div className="offcanvas-body d-flex flex-column"><Carrito carrito={carrito} onEliminar={id => setCarrito(actual => actual.filter(item => item.id !== id))} onVaciar={() => setCarrito([])} /></div>
+            <div className="offcanvas-body d-flex flex-column"><Carrito carrito={carrito} onCantidad={cambiarCantidad} onEliminar={id => setCarrito(actual => actual.filter(item => item.id !== id))} onVaciar={() => setCarrito([])} /></div>
         </div>
         <footer className="py-4 border-top border-secondary-subtle"><div className="container text-center text-secondary"><p className="mb-0">© 2026 Pixel Store · La maravilla de jugar al alcance de todos.</p></div></footer>
     </>;

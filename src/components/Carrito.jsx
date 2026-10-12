@@ -1,12 +1,19 @@
 import { formatoPrecio } from './Producto.jsx';
 
-export default function Carrito({ carrito, onEliminar, onVaciar }) {
+export default function Carrito({ carrito, onCantidad, onEliminar, onVaciar }) {
     const total = carrito.reduce((suma, item) => suma + item.precio * item.cantidad, 0);
     return <>
         <div id="listaCarrito" className="vstack gap-3 flex-grow-1" aria-live="polite">
             {carrito.length === 0 ? <p className="text-secondary">Tu carrito está vacío.</p> : carrito.map(item =>
                 <div key={item.id} className="d-flex justify-content-between gap-3 border-bottom border-secondary pb-3">
-                    <div><h3 className="h6 mb-1">{item.nombre}</h3><small className="text-secondary">{item.cantidad} × {formatoPrecio.format(item.precio)}</small></div>
+                    <div><h3 className="h6 mb-1">{item.nombre}</h3><small className="text-secondary">{formatoPrecio.format(item.precio)} por unidad</small>
+                        <div className="d-flex align-items-center gap-3 mt-2" role="group" aria-label={`Cantidad de ${item.nombre}`}>
+                            <button type="button" className="btn btn-sm btn-outline-light" onClick={() => onCantidad(item.id, -1)} aria-label={`Disminuir cantidad de ${item.nombre}`}>−</button>
+                            <span aria-label={`Unidades de ${item.nombre}`}>{item.cantidad}</span>
+                            <button type="button" className="btn btn-sm btn-outline-light" onClick={() => onCantidad(item.id, 1)} aria-label={`Aumentar cantidad de ${item.nombre}`}>+</button>
+                        </div>
+                        <small className="text-secondary d-block mt-2">Subtotal: {formatoPrecio.format(item.precio * item.cantidad)}</small>
+                    </div>
                     <button className="btn btn-sm btn-outline-light align-self-start" type="button" onClick={() => onEliminar(item.id)} aria-label={`Eliminar ${item.nombre}`}>×</button>
                 </div>
             )}
